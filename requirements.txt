@@ -1,0 +1,39 @@
+# K-Conference API — production dependencies
+# Install: pip install -r requirements.txt
+
+# Core framework
+Django==6.0.3
+djangorestframework==3.17.1
+
+# Auth
+djangorestframework-simplejwt==5.5.1
+PyJWT==2.12.1
+
+# API schema / docs
+drf-spectacular==0.29.0
+
+# Database
+mysqlclient==2.2.8
+
+# CORS
+django-cors-headers==4.9.0
+
+# Filtering / search
+django-filter==25.2
+
+# Media / file storage
+cloudinary==1.44.1
+pillow==12.1.1
+
+# Caching
+redis==7.4.0
+
+# Environment
+python-dotenv==1.2.2
+
+# Date utilities
+python-dateutil==2.9.0.post0
+
+# Production server
+gunicorn==25.3.0
+whitenoise==6.9.0

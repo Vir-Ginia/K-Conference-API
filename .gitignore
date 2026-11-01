@@ -1,0 +1,83 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+
+# Virtual environment
+tc-env/
+env/
+venv/
+.venv/
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Django
+db.sqlite3
+db.sqlite3-journal
+local_settings.py
+media/
+/static/
+/staticfiles/
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Architecture / generated docs
+DOC/
+
+# Temporary / debug scripts
+debug_*.py
+test_*.py
+check_*.py
+
+# PDFs
+*.pdf
+
+# Generated API schemas
+schema_*.yaml
+K-Conference*.yaml
+
+# Internal dev notes
+BUILD_SUMMARY.md
+TESTING_GUIDE.md
+DJANGO_COMMANDS.md
+API_PAYLOADS.md
+
+# Bootstrap script (not part of app)
+bootstrap_git.sh
+.claude/settings.local.json
+.env.example
+
+# Local environment and generated files
+.env
+.env.*
+!.env.example
+*.db
+*.sqlite3
+*.log
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+node_modules/
+target/
+*.class
+.DS_Store

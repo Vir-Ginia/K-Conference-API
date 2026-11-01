@@ -1,0 +1,56 @@
+services:
+  - type: web
+    name: k-conference-api
+    runtime: python
+    buildCommand: "bash build.sh"
+    startCommand: "python manage.py collectstatic --no-input && python manage.py migrate && gunicorn k_conference.wsgi:application --bind 0.0.0.0:$PORT --workers 4 --timeout 120 --log-level info"
+    healthCheckPath: /api/schema/
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: k_conference.settings
+      - key: DEBUG
+        value: "False"
+      # Generate a strong random value in the Render dashboard
+      - key: SECRET_KEY
+        generateValue: true
+      # Aiven MySQL (or any external MySQL host)
+      - key: DB_NAME
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        sync: false
+      # Cloudinary media storage
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      # Redis cache (optional — falls back to in-process cache if unset)
+      - key: CACHE_URL
+        sync: false
+      # Hosts / CORS — set to your actual Render URL + custom domain
+      - key: DJANGO_ALLOWED_HOSTS
+        sync: false
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      # Email (SMTP)
+      - key: EMAIL_HOST
+        sync: false
+      - key: EMAIL_PORT
+        value: "587"
+      - key: EMAIL_HOST_USER
+        sync: false
+      - key: EMAIL_HOST_PASSWORD
+        sync: false
+      - key: DEFAULT_FROM_EMAIL
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false

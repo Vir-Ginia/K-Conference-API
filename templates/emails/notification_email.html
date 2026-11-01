@@ -1,0 +1,22 @@
+{% extends "emails/base.html" %}
+
+{% block title %}{{ title }} — K-Conference{% endblock %}
+
+{% block heading %}{{ title }}{% endblock %}
+
+{% block content %}
+<p>Dear {{ recipient.get_full_name|default:recipient.email }},</p>
+
+<div class="info-box">
+    <strong>{{ notification_type }}</strong>
+    <p style="margin: 8px 0 0;">{{ message }}</p>
+</div>
+
+<p style="color: #999; font-size: 12px;">Received: {{ created_at }}</p>
+
+<p>You can view all your notifications by logging in to your K-Conference account.</p>
+{% endblock %}
+
+{% block footer_extra %}
+<p>You received this email because you have email notifications enabled. You can update your preferences in your account settings.</p>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "emails/base.html" %}
+
+{% block title %}Review Assignment — K-Conference{% endblock %}
+{% block heading %}You Have Been Assigned a Paper to Review{% endblock %}
+
+{% block content %}
+<p>Dear {{ recipient.get_full_name|default:recipient.email }},</p>
+
+<p>You have been assigned to review a submission for <strong>{{ conference_title }}</strong>.</p>
+
+<div class="info-box">
+    <strong>{{ submission_title }}</strong><br>
+    {% if track_name %}<span style="font-size:13px;">Track: {{ track_name }}</span>{% endif %}
+</div>
+
+<table style="width:100%;border-collapse:collapse;margin:15px 0;font-size:14px;">
+    <tr><td style="padding:6px 0;color:#666;width:40%;">Assignment ID</td><td><strong>{{ assignment_id }}</strong></td></tr>
+    {% if due_date %}<tr><td style="padding:6px 0;color:#666;">Review due</td><td><strong>{{ due_date }}</strong></td></tr>{% endif %}
+    <tr><td style="padding:6px 0;color:#666;">Conference</td><td>{{ conference_title }}</td></tr>
+</table>
+
+<p>Please log in to your account to access the submission and complete your review using the provided rubric.</p>
+
+<p>If you have a conflict of interest with this paper, please declare it as soon as possible so the assignment can be reassigned.</p>
+
+<p style="color:#999;font-size:12px;">If you believe you received this assignment in error, please contact the conference organisers.</p>
+{% endblock %}
+
+{% block footer_extra %}
+<p>Conference: {{ conference_title }}</p>
+{% endblock %}

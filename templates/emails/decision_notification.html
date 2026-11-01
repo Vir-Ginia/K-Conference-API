@@ -1,0 +1,53 @@
+{% extends "emails/base.html" %}
+
+{% block title %}Decision on Your Submission — K-Conference{% endblock %}
+{% block heading %}Decision on Your Submission{% endblock %}
+
+{% block content %}
+<p>Dear {{ recipient.get_full_name|default:recipient.email }},</p>
+
+<p>A decision has been made on your submission to <strong>{{ conference_title }}</strong>.</p>
+
+{% if decision == 'accepted' %}
+<div class="success-box">
+    <strong>Accepted</strong> — Congratulations! Your paper has been accepted.
+</div>
+{% elif decision == 'best_paper' %}
+<div class="success-box">
+    <strong>Best Paper Award</strong> — Congratulations! Your paper has been selected as a Best Paper.
+</div>
+{% elif decision == 'revision_required' %}
+<div class="warning-box">
+    <strong>Revision Required</strong> — Your paper requires revisions before a final decision can be made.
+</div>
+{% elif decision == 'rejected' %}
+<div class="danger-box">
+    <strong>Not Accepted</strong> — We regret to inform you that your paper was not accepted.
+</div>
+{% else %}
+<div class="info-box">
+    <strong>Decision: {{ decision }}</strong>
+</div>
+{% endif %}
+
+<table style="width:100%;border-collapse:collapse;margin:15px 0;font-size:14px;">
+    <tr><td style="padding:6px 0;color:#666;width:40%;">Paper</td><td><strong>{{ submission_title }}</strong></td></tr>
+    <tr><td style="padding:6px 0;color:#666;">Conference</td><td>{{ conference_title }}</td></tr>
+</table>
+
+{% if decision_note %}
+<p><strong>Organisers' note:</strong></p>
+<div class="info-box">{{ decision_note }}</div>
+{% endif %}
+
+{% if feedback_released and reviewer_feedback %}
+<p><strong>Reviewer feedback:</strong></p>
+<div class="info-box" style="white-space:pre-wrap;">{{ reviewer_feedback }}</div>
+{% endif %}
+
+<p>Log in to your account to view full details of your submission and any available feedback.</p>
+{% endblock %}
+
+{% block footer_extra %}
+<p>Conference: {{ conference_title }}</p>
+{% endblock %}

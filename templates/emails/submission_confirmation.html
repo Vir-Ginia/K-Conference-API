@@ -1,0 +1,30 @@
+{% extends "emails/base.html" %}
+
+{% block title %}Submission Received — K-Conference{% endblock %}
+{% block heading %}Submission Received{% endblock %}
+
+{% block content %}
+<p>Dear {{ recipient.get_full_name|default:recipient.email }},</p>
+
+<p>Your paper has been successfully submitted to <strong>{{ conference_title }}</strong>.</p>
+
+<div class="success-box">
+    <strong>{{ submission_title }}</strong><br>
+    {% if track_name %}<span style="font-size:13px;">Track: {{ track_name }}</span>{% endif %}
+</div>
+
+<table style="width:100%;border-collapse:collapse;margin:15px 0;font-size:14px;">
+    <tr><td style="padding:6px 0;color:#666;width:40%;">Submission ID</td><td><strong>{{ submission_id }}</strong></td></tr>
+    <tr><td style="padding:6px 0;color:#666;">Version</td><td>{{ version_number }}</td></tr>
+    <tr><td style="padding:6px 0;color:#666;">Submitted at</td><td>{{ submitted_at }}</td></tr>
+    <tr><td style="padding:6px 0;color:#666;">Status</td><td>Under review</td></tr>
+</table>
+
+<p>You will be notified when reviewers have been assigned and when a decision has been made. You can track your submission status at any time by logging in to your account.</p>
+
+<p style="color:#999;font-size:12px;">If you did not submit this paper, please contact the conference organisers immediately.</p>
+{% endblock %}
+
+{% block footer_extra %}
+<p>Submitted to: {{ conference_title }}</p>
+{% endblock %}
